@@ -12,13 +12,14 @@ export const useAuthStore = defineStore('auth', {
       const token = useCookie<string | null>('token')
       token.value = 'dummy-token'
 
-      const user = useCookie<User | null>('user')
-      user.value = { id: 1, name: 'デモユーザー', email }
+      const nextUser: User = { id: 1, name: 'デモユーザー', email }
 
-      this.user = user.value
+      useCookie<User | null>('user').value = nextUser
+      this.user = nextUser
     },
 
     hydrateFromCookie() {
+      if (!import.meta.client) return
       const user = useCookie<User | null>('user')
       this.user = user.value ?? null
     },
