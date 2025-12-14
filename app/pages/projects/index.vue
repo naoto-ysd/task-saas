@@ -26,7 +26,6 @@
       新規プロジェクト作成（TODO）
     </button>
   </div>
-  <button @click="onLogout">ログアウト</button>
 </template>
 
 <script setup lang="ts">
@@ -38,11 +37,6 @@ const router = useRouter()
 type Project = {
   id: number
   name: string
-}
-
-const onLogout = () => {
-  auth.logout()
-  router.push('/login')
 }
 
 const projects = ref<Project[]>([
